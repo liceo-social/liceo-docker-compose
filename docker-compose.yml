@@ -19,7 +19,7 @@ services:
       - 5432:5432
 
   manager:
-    image: masiaventura-docker-public.bintray.io/manager:0.1.0
+    image: masiaventura-docker-public.bintray.io/manager:0.1.1
     volumes:
       # para asegurarnos de que la hora del contenedor 
       # de Docker sigue la hora de la maquina host
