@@ -2,15 +2,15 @@
 
 # 1 - VARIABLES ---------------------
 
-LOG_PREFIX="masi:"
+LOG_PREFIX="liceo:"
 BACKUP_FS_PATH="/tmp/backup/fs"
 BACKUP_DB_PATH="/tmp/backup/db"
 
 # 2 - FUNCIONES ----------------------
 
-# muestra como usar el comando masi.sh
+# muestra como usar el comando liceo.sh
 function usage {
-    echo "$LOG_PREFIX masi.sh (startup|shutdown|status|logs|backup|backup-up|backup-fs)"
+    echo "$LOG_PREFIX liceo.sh (startup|shutdown|status|logs|backup|backup-up|backup-fs)"
 }
 
 # arranca los contenedores de docker
@@ -46,11 +46,11 @@ function backup {
 function backup-db {
     PREFIX="$LOG_PREFIX [backup-db]"        
 
-    BACKUP_FILENAME="masi-db-$(date +%Y%m%d%H%M).sql"
+    BACKUP_FILENAME="liceo-db-$(date +%Y%m%d%H%M).sql"
     BACKUP_FILEPATH="$BACKUP_DB_PATH/$BACKUP_FILENAME"
 
     echo "$PREFIX creando fichero de backup $BACKUP_FILEPATH"
-    docker-compose exec db sh -c "pg_dump -f $BACKUP_FILEPATH -U masiaventura masiaventura"
+    docker-compose exec db sh -c "pg_dump -f $BACKUP_FILEPATH -U liceo liceo"
 
     echo "$PREFIX backup de la base dedatos terminado"
 }
@@ -59,7 +59,7 @@ function backup-db {
 function backup-fs {
     PREFIX="$LOG_PREFIX [backup-fs]"
 
-    BACKUP_FILENAME="masi-fs-$(date +%Y%m%d%H%M).tar.gz"
+    BACKUP_FILENAME="liceo-fs-$(date +%Y%m%d%H%M).tar.gz"
     BACKUP_FILEPATH="$BACKUP_FS_PATH/$BACKUP_FILENAME"
     SCRIPT='[ "$(ls -A /tmp/kk)" ] && tar -czf /tmp/backup/files/'$BACKUP_FILENAME' /tmp/kk/* || echo'
 
